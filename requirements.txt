@@ -1,0 +1,9 @@
+pandas
+scikit-learn==1.0
+flask==2.0.2
+gunicorn==20.1.0
+transformers==4.21.1
+torchinfo==1.7.0
+datasets==2.4.0
+# torch
+# torchtext

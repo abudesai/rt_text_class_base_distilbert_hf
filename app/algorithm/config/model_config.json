@@ -1,0 +1,13 @@
+{
+  "pp_params": {
+    "pp_step_names": {
+      "LABEL_ENCODER": "label_encoder",
+      "COLUMNS_RENAMER": "columns_renamer"
+    }
+  },
+  "valid_split": 0.1,
+  "max_resample_of_minority_classes": 5,
+  "target_dummy_val": "__target__",
+  "MAX_VOCAB_SIZE": 5000,
+  "MAX_TEXT_LEN": 250
+}

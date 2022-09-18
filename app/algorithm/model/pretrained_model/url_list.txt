@@ -1,0 +1,6 @@
+https://huggingface.co/distilbert-base-uncased/resolve/main/README.md
+https://huggingface.co/distilbert-base-uncased/resolve/main/config.json
+https://huggingface.co/distilbert-base-uncased/resolve/main/tokenizer.json
+https://huggingface.co/distilbert-base-uncased/resolve/main/tokenizer_config.json
+https://huggingface.co/distilbert-base-uncased/resolve/main/vocab.txt
+https://huggingface.co/distilbert-base-uncased/resolve/main/pytorch_model.bin

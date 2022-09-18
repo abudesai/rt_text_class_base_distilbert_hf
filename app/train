@@ -1,0 +1,61 @@
+#! /usr/bin/env python
+
+import os
+import sys
+import traceback
+import warnings
+os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3'  # or any {'0', '1', '2'}
+warnings.filterwarnings('ignore') 
+
+import algorithm.utils as utils
+import algorithm.model_trainer as model_trainer
+import algorithm.preprocessing.pipeline as pipeline
+import algorithm.model.classifier as classifier
+
+# Paths for inputs, model, outputs for ml_vol mounted to the container.
+prefix = '/opt/ml_vol/'
+data_path = os.path.join(prefix, 'inputs', 'data')
+data_schema_path = os.path.join(prefix, 'inputs', 'data_config')
+model_path = os.path.join(prefix, 'model', 'artifacts')
+hyper_param_path = os.path.join(prefix, 'model', 'model_config')
+output_path = os.path.join(prefix, 'outputs')
+failure_path = os.path.join(output_path, 'errors', 'train_failure')
+
+
+# This algorithm has a single channel of input data called 'training'. Since we run in
+# File mode, the input files are copied to the directory specified here.
+channel_name='training'
+data_path = os.path.join(data_path, channel_name, "textClassificationBaseMainInput")
+
+
+# The function to execute the training.
+def train():    
+    try:        
+        print('Starting the training.')
+        # Read in any hyperparameters that the user defined with algorithm submission
+        hyper_parameters = utils.get_hyperparameters(hyper_param_path)
+        # Read data
+        train_data = utils.get_data(data_path)   
+        # read data config
+        data_schema = utils.get_data_schema(data_schema_path)
+        # get trained preprocessor, model, training history 
+        preprocessor, model = model_trainer.get_trained_model(train_data, data_schema, hyper_parameters, model_path)        
+        # Save the processing pipeline   
+        pipeline.save_preprocessor(preprocessor, model_path)
+        # Save the model 
+        classifier.save_model(model, model_path)    
+        print('Done training.')
+    except Exception as e:
+        print("error!")
+        # Write out an error file. This will be returned as the failureReason to the client.
+        trc = traceback.format_exc()
+        with open(failure_path, 'w') as s:
+            s.write('Exception during training: ' + str(e) + '\n' + trc)
+        # Printing this causes the exception to be in the training job logs, as well.
+        print('Exception during training: ' + str(e) + '\n' + trc, file=sys.stderr)
+        # A non-zero exit code causes the training job to be marked as Failed.
+        sys.exit(255)
+
+
+if __name__ == '__main__':
+    train()
