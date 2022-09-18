@@ -16,7 +16,7 @@ hpt_results/
 **/*_with_hpt.csv
 **/model_*_*_*.json
 
-
+docker-compose.yaml
 build_and_push.sh
 venv/
 
