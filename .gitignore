@@ -5,9 +5,9 @@ local_test/ml_vol/
 ml_vol/outputs/
 **/examples/**/*.txt
 
-!pretrained_model
-pretrained_model/*
-!pretrained_model/url_list.txt
+!**/pretrained_model
+**/pretrained_model/*
+!**/pretrained_model/url_list.txt
 
 artifacts/
 hpt_results/
