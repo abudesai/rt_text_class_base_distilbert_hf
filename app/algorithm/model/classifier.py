@@ -40,9 +40,7 @@ history_fname = "history.json"
 pretrained_model_path = os.path.join(os.path.dirname(__file__), 'pretrained_model')
 
 device = 'cuda:0' if torch.cuda.is_available() else 'cpu'
-# device = 'cpu'
-
-print(f"Using device {device}")
+print(f"Using device={device}")
       
 def compute_metrics(logits_and_labels):
     logits, labels = logits_and_labels

@@ -1,7 +1,9 @@
 #! /usr/bin/env python
 
 import os
+import numpy as np
 import sys
+import time 
 import traceback
 import warnings
 os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3'  # or any {'0', '1', '2'}
@@ -32,6 +34,7 @@ data_path = os.path.join(data_path, channel_name, "textClassificationBaseMainInp
 def train():    
     try:        
         print('Starting the training.')
+        start = time.time() 
         # Read in any hyperparameters that the user defined with algorithm submission
         hyper_parameters = utils.get_hyperparameters(hyper_param_path)
         # Read data
@@ -43,7 +46,10 @@ def train():
         # Save the processing pipeline   
         pipeline.save_preprocessor(preprocessor, model_path)
         # Save the model 
-        classifier.save_model(model, model_path)    
+        classifier.save_model(model, model_path)         
+        end = time.time()
+        elapsed_time_in_minutes = np.round((end - start)/60.0, 2)   
+        print(f'Done training in {elapsed_time_in_minutes} minutes.')  
         print('Done training.')
     except Exception as e:
         print("error!")
