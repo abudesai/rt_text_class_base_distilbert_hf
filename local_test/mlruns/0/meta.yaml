@@ -1,0 +1,4 @@
+artifact_location: file:///C:/Users/abbus/Documents/GitRepos/rt-sandbox/rt_algorithms/text_classification/rt_text_class_base_distilbert_hf/local_test/mlruns/0
+experiment_id: '0'
+lifecycle_stage: active
+name: Default

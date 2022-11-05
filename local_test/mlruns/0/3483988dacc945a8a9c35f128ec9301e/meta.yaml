@@ -1,0 +1,15 @@
+artifact_uri: file:///C:/Users/abbus/Documents/GitRepos/rt-sandbox/rt_algorithms/text_classification/rt_text_class_base_distilbert_hf/local_test/mlruns/0/3483988dacc945a8a9c35f128ec9301e/artifacts
+end_time: 1667626783157
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+name: ''
+run_id: 3483988dacc945a8a9c35f128ec9301e
+run_uuid: 3483988dacc945a8a9c35f128ec9301e
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1667625846020
+status: 3
+tags: []
+user_id: abbus
