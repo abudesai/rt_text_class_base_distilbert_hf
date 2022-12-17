@@ -30,5 +30,3 @@ RUN wget -i ./algorithm/model/pretrained_model/url_list.txt -P ./algorithm/model
 RUN chmod +x train &&\
     chmod +x predict &&\
     chmod +x serve 
-
-USER 1001
