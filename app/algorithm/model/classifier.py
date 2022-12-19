@@ -72,7 +72,7 @@ class Classifier:
 
     def _tokenize_function(self, df):
         return self.tokenizer(
-            df["text"], padding="max_length", max_length=64, truncation=True
+            df["text"], padding="max_length", max_length=512, truncation=True
         )
 
     def fit(self, train_data, valid_data, num_train_epochs, save_path):
@@ -100,8 +100,8 @@ class Classifier:
             logging_strategy="epoch",
             evaluation_strategy="epoch",
             save_strategy="epoch",
-            per_device_train_batch_size=4,
-            per_device_eval_batch_size=4,
+            per_device_train_batch_size=16,
+            per_device_eval_batch_size=16,
             num_train_epochs=num_train_epochs,
             # save_total_limit=2,
             load_best_model_at_end=True,
