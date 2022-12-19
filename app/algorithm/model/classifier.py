@@ -103,7 +103,7 @@ class Classifier:
             per_device_train_batch_size=4,
             per_device_eval_batch_size=4,
             num_train_epochs=num_train_epochs,
-            save_total_limit=2,
+            # save_total_limit=2,
             load_best_model_at_end=True,
         )
 
