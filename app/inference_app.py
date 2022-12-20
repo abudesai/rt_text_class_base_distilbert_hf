@@ -2,7 +2,7 @@
 # https://github.com/aws/amazon-sagemaker-examples/blob/main/advanced_functionality/scikit_bring_your_own/container/decision_trees/predictor.py
 
 import io
-import pandas as pd
+import pandas as pd, numpy as np
 import json
 import flask
 import traceback
@@ -81,7 +81,7 @@ def infer():
             pred_obj = {}
             pred_obj[id_field_name] = rec[id_field_name]
             pred_obj["label"] = rec["__label"]
-            pred_obj["scores"] = {
+            pred_obj["probabilities"] = {
                 str(k): np.round(v, 5)
                 for k, v in rec.items()
                 if k not in [id_field_name, "__label"]
