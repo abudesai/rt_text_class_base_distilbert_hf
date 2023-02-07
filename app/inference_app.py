@@ -19,7 +19,7 @@ from algorithm.model import classifier as model
 prefix = "/opt/ml_vol/"
 data_schema_path = os.path.join(prefix, "inputs", "data_config")
 model_path = os.path.join(prefix, "model", "artifacts")
-failure_path = os.path.join(prefix, "outputs", "errors", "serve_failure")
+failure_path = os.path.join(prefix, "outputs", "errors", "serve_failure.txt")
 
 
 # get data schema - its needed to set the prediction field name
@@ -66,28 +66,7 @@ def infer():
 
     # Do the prediction
     try:
-        predictions_df = model_server.predict_proba(data)
-        predictions_df.columns = [str(c) for c in predictions_df.columns]
-        class_names = predictions_df.columns[1:]
-
-        predictions_df["__label"] = pd.DataFrame(
-            predictions_df[class_names], columns=class_names
-        ).idxmax(axis=1)
-
-        # convert to the json response specification
-        id_field_name = model_server.id_field_name
-        predictions_response = []
-        for rec in predictions_df.to_dict(orient="records"):
-            pred_obj = {}
-            pred_obj[id_field_name] = rec[id_field_name]
-            pred_obj["label"] = rec["__label"]
-            pred_obj["probabilities"] = {
-                str(k): np.round(v, 5)
-                for k, v in rec.items()
-                if k not in [id_field_name, "__label"]
-            }
-            predictions_response.append(pred_obj)
-
+        predictions_response = model_server.predict_to_json(data)
         return flask.Response(
             response=json.dumps({"predictions": predictions_response}),
             status=200,

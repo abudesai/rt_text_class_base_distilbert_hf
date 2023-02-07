@@ -21,7 +21,7 @@ data_schema_path = os.path.join(prefix, 'inputs', 'data_config')
 model_path = os.path.join(prefix, 'model', 'artifacts')
 hyper_param_path = os.path.join(prefix, 'model', 'model_config')
 output_path = os.path.join(prefix, 'outputs')
-failure_path = os.path.join(output_path, 'errors', 'train_failure')
+failure_path = os.path.join(output_path, 'errors', 'train_failure.txt')
 
 
 # This algorithm has a single channel of input data called 'training'. Since we run in

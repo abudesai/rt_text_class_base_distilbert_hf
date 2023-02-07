@@ -1,7 +1,7 @@
 version: "3"
 services:
   algo_app:
-    container_name: rt_text_class_base_distilbert_hf
+    container_name: myc
     build: .
     volumes:
       - ./../ml_vol:/opt/ml_vol

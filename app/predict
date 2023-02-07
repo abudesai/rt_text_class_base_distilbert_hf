@@ -18,7 +18,7 @@ data_schema_path = os.path.join(prefix, "inputs", "data_config")
 model_path = os.path.join(prefix, "model", "artifacts")
 output_path = os.path.join(prefix, "outputs")
 testing_outputs_path = os.path.join(output_path, "testing_outputs")
-failure_path = os.path.join(output_path, "errors", "test_failure")
+failure_path = os.path.join(output_path, "errors", "predict_failure.txt")
 test_pred_file_name = "test_predictions.csv"
 
 # Since we run in File mode, the input files are copied to the directory specified here.

@@ -99,10 +99,7 @@ def copy_example_files(dataset_name):
     shutil.copyfile(f"{local_datapath}/{dataset_name}/{dataset_name}_train.csv", os.path.join(train_data_path, f"{dataset_name}_train.csv"))    
     # test data     
     shutil.copyfile(f"{local_datapath}/{dataset_name}/{dataset_name}_test.csv", os.path.join(test_data_path, f"{dataset_name}_test.csv"))    
-    # hyperparameters
-    shutil.copyfile("./examples/hyperparameters.json", os.path.join(hyper_param_path, "hyperparameters.json"))
-
-
+   
 
 def train_and_save_algo():        
     # Read hyperparameters 
@@ -249,8 +246,9 @@ def run_train_and_test(dataset_name, run_hpt, num_hpt_trials):
 if __name__ == "__main__": 
     
     
-    datasets = ["clickbait", "drug_reviews", "movie_reviews", "spam_text", "tweet_emotions"]
-    datasets = ["movie_reviews"]
+    datasets = ["clickbait", "drug_reviews", "ecommerce_categories", "fake_job_postings", "hate_speech", 
+                "movie_reviews", "musical_instruments", "newsgroups", "spam_text", "tweet_emotions"]
+    datasets = ["spam_text"]
     
     all_results = []
     run_hpt = False
